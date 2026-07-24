@@ -1,0 +1,123 @@
+openapi: 3.1.0
+info:
+  title: Teahouse Vault Logs Vaults API
+  version: '1.0'
+  description: 'Read-only HTTP/JSON API exposing Teahouse Finance permissionless DeFi vault data: the vault catalog, per-vault performance time series (TVL, fee APR, share-token APR, share price), and account/vault share transaction logs. Vaults are of type V3Pair (a single Uniswap V3 LP pair) or V3Port (a portfolio of multiple Uniswap V3 positions).'
+  contact:
+    name: Teahouse Finance
+    url: https://docs.teahouse.finance/docs/vault-api
+  x-logo:
+    url: https://teahouse.finance/
+servers:
+- url: https://vault-content-api.teahouse.finance
+  description: Vault content API (catalog, performance, logs)
+- url: https://vault-api.teahouse.finance
+  description: Vault API host
+tags:
+- name: Vaults
+  description: Vault catalog and metadata
+paths:
+  /vaults:
+    get:
+      operationId: listVaults
+      summary: Get vault list with contents
+      description: Returns the full catalog of vaults with content metadata (address, symbol, chain, TVL, APR, share-token info).
+      tags:
+      - Vaults
+      responses:
+        '200':
+          description: Vault catalog.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vault'
+        '400':
+          description: Bad request (client-side error, with message).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized (API key verification failed).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server-side error (database/contract errors).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /vaults/type/permissionless:
+    get:
+      operationId: listPermissionlessVaults
+      summary: Get permissionless vault data list
+      description: Returns permissionless vaults with latest performance metrics (TVL, fee APR, share-token APR).
+      tags:
+      - Vaults
+      responses:
+        '200':
+          description: Permissionless vault list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vault'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server-side error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Vault:
+      type: object
+      description: A Teahouse vault and its latest metrics.
+      properties:
+        address:
+          type: string
+          description: Vault contract address.
+        symbol:
+          type: string
+        chain:
+          type: string
+        chainID:
+          type: integer
+        tvl:
+          type: number
+          description: Total value locked.
+        feeApr:
+          type: number
+        shareTokenApr:
+          type: number
+    Error:
+      type: object
+      description: Error envelope returned on 4xx/5xx responses.
+      properties:
+        error:
+          type: string
+          description: Human-readable error message.
+        details:
+          type: array
+          description: Optional array of additional error detail entries.
+          items:
+            type: object
+      required:
+      - error
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+      description: The documentation notes a 401 "API Key verification failed" response, indicating some endpoints require an API key. The exact header name is NOT published by Teahouse and must be confirmed with the provider; the value shown here is a placeholder, not an authoritative claim.

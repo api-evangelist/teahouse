@@ -1,0 +1,108 @@
+openapi: 3.1.0
+info:
+  title: Teahouse Vault Logs Performance API
+  version: '1.0'
+  description: 'Read-only HTTP/JSON API exposing Teahouse Finance permissionless DeFi vault data: the vault catalog, per-vault performance time series (TVL, fee APR, share-token APR, share price), and account/vault share transaction logs. Vaults are of type V3Pair (a single Uniswap V3 LP pair) or V3Port (a portfolio of multiple Uniswap V3 positions).'
+  contact:
+    name: Teahouse Finance
+    url: https://docs.teahouse.finance/docs/vault-api
+  x-logo:
+    url: https://teahouse.finance/
+servers:
+- url: https://vault-content-api.teahouse.finance
+  description: Vault content API (catalog, performance, logs)
+- url: https://vault-api.teahouse.finance
+  description: Vault API host
+tags:
+- name: Performance
+  description: Vault performance time series
+paths:
+  /vaults/permissionless/performance/{chainID}/{contractAddress}/{start}/{end}:
+    get:
+      operationId: getPermissionlessVaultPerformance
+      summary: Get vault info and performance
+      description: Returns vault info and performance time series (TVL, APR, share-token price) between two Unix timestamps.
+      tags:
+      - Performance
+      parameters:
+      - name: chainID
+        in: path
+        required: true
+        description: Blockchain ID (e.g. 137 for Polygon).
+        schema:
+          type: integer
+      - name: contractAddress
+        in: path
+        required: true
+        description: Vault contract address.
+        schema:
+          type: string
+      - name: start
+        in: path
+        required: true
+        description: Start Unix timestamp.
+        schema:
+          type: integer
+      - name: end
+        in: path
+        required: true
+        description: End Unix timestamp.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Vault info and performance.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Performance'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server-side error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Performance:
+      type: object
+      description: Time-series performance for a vault.
+      properties:
+        tvl:
+          type: array
+          items:
+            type: number
+        apr:
+          type: array
+          items:
+            type: number
+        sharePrice:
+          type: array
+          items:
+            type: number
+    Error:
+      type: object
+      description: Error envelope returned on 4xx/5xx responses.
+      properties:
+        error:
+          type: string
+          description: Human-readable error message.
+        details:
+          type: array
+          description: Optional array of additional error detail entries.
+          items:
+            type: object
+      required:
+      - error
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+      description: The documentation notes a 401 "API Key verification failed" response, indicating some endpoints require an API key. The exact header name is NOT published by Teahouse and must be confirmed with the provider; the value shown here is a placeholder, not an authoritative claim.
