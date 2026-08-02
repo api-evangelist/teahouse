@@ -1,0 +1,23 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.teahouse.finance/docs/vault-api
+docs: https://docs.teahouse.finance/docs/for-developers/vault-api-introduction
+note: >-
+  Teahouse documents a 401 "API Key verification failed" response for the Vault
+  API, indicating API-key authentication is required for authenticated calls.
+  The exact header/parameter name is NOT published in the docs and must be
+  confirmed with the provider. Several read endpoints (the /vaults catalog)
+  appear to be publicly readable and are also consumed by third parties such as
+  DeFiLlama.
+summary:
+  types: [apiKey]
+  api_key_in: [header]
+  oauth2_flows: []
+schemes:
+  - name: ApiKeyAuth
+    type: apiKey
+    in: header
+    name: X-API-KEY
+    documented: partial
+    note: header name inferred/placeholder; provider does not publish it
+    sources: [openapi/teahouse-vault-openapi.yml]

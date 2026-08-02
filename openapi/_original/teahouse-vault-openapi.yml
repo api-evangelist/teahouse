@@ -1,0 +1,313 @@
+openapi: 3.1.0
+# x-provenance
+# generated: '2026-07-21'
+# method: generated
+# source: https://docs.teahouse.finance/docs/vault-api  (Teahouse Vault API reference)
+# note: Teahouse does not publish an OpenAPI document. This spec is a faithful
+#   transcription of the publicly documented Vault API endpoints, parameters,
+#   status codes and error envelope. Live endpoints sit behind Cloudflare and
+#   were not sampled. The API-key header name is not published by the provider.
+info:
+  title: Teahouse Vault API
+  version: '1.0'
+  description: >-
+    Read-only HTTP/JSON API exposing Teahouse Finance permissionless DeFi vault
+    data: the vault catalog, per-vault performance time series (TVL, fee APR,
+    share-token APR, share price), and account/vault share transaction logs.
+    Vaults are of type V3Pair (a single Uniswap V3 LP pair) or V3Port (a
+    portfolio of multiple Uniswap V3 positions).
+  contact:
+    name: Teahouse Finance
+    url: https://docs.teahouse.finance/docs/vault-api
+  x-logo:
+    url: https://teahouse.finance/
+servers:
+  - url: https://vault-content-api.teahouse.finance
+    description: Vault content API (catalog, performance, logs)
+  - url: https://vault-api.teahouse.finance
+    description: Vault API host
+tags:
+  - name: Vaults
+    description: Vault catalog and metadata
+  - name: Performance
+    description: Vault performance time series
+  - name: Logs
+    description: Share transaction logs
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+      description: >-
+        The documentation notes a 401 "API Key verification failed" response,
+        indicating some endpoints require an API key. The exact header name is
+        NOT published by Teahouse and must be confirmed with the provider; the
+        value shown here is a placeholder, not an authoritative claim.
+  schemas:
+    Error:
+      type: object
+      description: Error envelope returned on 4xx/5xx responses.
+      properties:
+        error:
+          type: string
+          description: Human-readable error message.
+        details:
+          type: array
+          description: Optional array of additional error detail entries.
+          items:
+            type: object
+      required:
+        - error
+    Vault:
+      type: object
+      description: A Teahouse vault and its latest metrics.
+      properties:
+        address:
+          type: string
+          description: Vault contract address.
+        symbol:
+          type: string
+        chain:
+          type: string
+        chainID:
+          type: integer
+        tvl:
+          type: number
+          description: Total value locked.
+        feeApr:
+          type: number
+        shareTokenApr:
+          type: number
+    Performance:
+      type: object
+      description: Time-series performance for a vault.
+      properties:
+        tvl:
+          type: array
+          items:
+            type: number
+        apr:
+          type: array
+          items:
+            type: number
+        sharePrice:
+          type: array
+          items:
+            type: number
+    ShareLog:
+      type: object
+      description: A single share transaction log entry.
+      properties:
+        fromAddress:
+          type: string
+        toAddress:
+          type: string
+        amount:
+          type: string
+        blockNumber:
+          type: integer
+        timestamp:
+          type: integer
+        transactionID:
+          type: string
+        action:
+          type: string
+          description: One of deposit, transfer_from, transfer_to, withdraw.
+paths:
+  /vaults:
+    get:
+      operationId: listVaults
+      summary: Get vault list with contents
+      description: Returns the full catalog of vaults with content metadata (address, symbol, chain, TVL, APR, share-token info).
+      tags: [Vaults]
+      responses:
+        '200':
+          description: Vault catalog.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vault'
+        '400':
+          description: Bad request (client-side error, with message).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized (API key verification failed).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server-side error (database/contract errors).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /vaults/type/permissionless:
+    get:
+      operationId: listPermissionlessVaults
+      summary: Get permissionless vault data list
+      description: Returns permissionless vaults with latest performance metrics (TVL, fee APR, share-token APR).
+      tags: [Vaults]
+      responses:
+        '200':
+          description: Permissionless vault list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vault'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server-side error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /vaults/permissionless/performance/{chainID}/{contractAddress}/{start}/{end}:
+    get:
+      operationId: getPermissionlessVaultPerformance
+      summary: Get vault info and performance
+      description: Returns vault info and performance time series (TVL, APR, share-token price) between two Unix timestamps.
+      tags: [Performance]
+      parameters:
+        - name: chainID
+          in: path
+          required: true
+          description: Blockchain ID (e.g. 137 for Polygon).
+          schema: { type: integer }
+        - name: contractAddress
+          in: path
+          required: true
+          description: Vault contract address.
+          schema: { type: string }
+        - name: start
+          in: path
+          required: true
+          description: Start Unix timestamp.
+          schema: { type: integer }
+        - name: end
+          in: path
+          required: true
+          description: End Unix timestamp.
+          schema: { type: integer }
+      responses:
+        '200':
+          description: Vault info and performance.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Performance'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server-side error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /vaults/permissionless/log/{address}/{startTimestamp}/{endTimestamp}:
+    get:
+      operationId: getAccountShareTransactions
+      summary: Get account share transactions in permissionless vault
+      description: Returns share transaction logs (deposit, transfer_from, transfer_to, withdraw) for a given wallet address within a time range.
+      tags: [Logs]
+      parameters:
+        - name: address
+          in: path
+          required: true
+          description: Wallet address.
+          schema: { type: string }
+        - name: startTimestamp
+          in: path
+          required: true
+          schema: { type: integer }
+        - name: endTimestamp
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        '200':
+          description: Account share transaction logs.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ShareLog'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server-side error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /vaults/permissionless/log/shares/{chainID}/{contractAddress}/{startTimestamp}/{endTimestamp}:
+    get:
+      operationId: getVaultShareTransactions
+      summary: Get share transactions in permissionless vault
+      description: Returns the vault address, chain, and share transaction logs (fromAddress, toAddress, amount, blockNumber, timestamp, transactionID) within a time range.
+      tags: [Logs]
+      parameters:
+        - name: chainID
+          in: path
+          required: true
+          schema: { type: integer }
+        - name: contractAddress
+          in: path
+          required: true
+          schema: { type: string }
+        - name: startTimestamp
+          in: path
+          required: true
+          schema: { type: integer }
+        - name: endTimestamp
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        '200':
+          description: Vault share transaction logs.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  address: { type: string }
+                  chain: { type: string }
+                  logs:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ShareLog'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server-side error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'

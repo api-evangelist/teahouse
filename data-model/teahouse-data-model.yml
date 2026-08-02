@@ -1,0 +1,32 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/teahouse-vault-openapi.yml
+docs: https://docs.teahouse.finance/docs/vault-api
+entities:
+  - name: Vault
+    key: [chainID, address]
+    description: A permissionless Teahouse vault (V3Pair single Uniswap V3 LP pair, or V3Port multi-position portfolio).
+    fields: [address, symbol, chain, chainID, tvl, feeApr, shareTokenApr]
+  - name: Performance
+    description: Time-series performance snapshot for a vault over a timestamp range.
+    fields: [tvl, apr, sharePrice]
+  - name: ShareLog
+    description: A single share transaction event (deposit / withdraw / transfer_from / transfer_to).
+    fields: [fromAddress, toAddress, amount, blockNumber, timestamp, transactionID, action]
+relationships:
+  - from: Performance
+    type: belongs_to
+    to: Vault
+    via: [chainID, contractAddress]
+  - from: ShareLog
+    type: belongs_to
+    to: Vault
+    via: [chainID, contractAddress]
+  - from: Vault
+    type: has_many
+    to: ShareLog
+    via: contractAddress
+  - from: Vault
+    type: has_many
+    to: Performance
+    via: contractAddress

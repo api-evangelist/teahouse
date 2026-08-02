@@ -1,0 +1,18 @@
+{
+  "provider": "teahouse",
+  "sources": [
+    "teahouse-logs-api-openapi.yml",
+    "teahouse-performance-api-openapi.yml",
+    "teahouse-vaults-api-openapi.yml"
+  ],
+  "outputs": [
+    "teahouse-logs-api-openapi.yml",
+    "teahouse-performance-api-openapi.yml",
+    "teahouse-vaults-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

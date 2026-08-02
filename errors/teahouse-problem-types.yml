@@ -1,0 +1,29 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.teahouse.finance/docs/for-developers/vault-api-introduction
+format: custom-json
+note: >-
+  Teahouse does NOT use RFC 9457 problem+json. Errors return a JSON object with
+  an "error" message field and an optional "details" array. Success-with-no-data
+  returns an empty object {}. Status codes and semantics below are transcribed
+  verbatim from the Vault API introduction.
+envelope:
+  fields:
+    error: Human-readable error message (string)
+    details: Optional array of additional detail entries
+  example:
+    error: bad request
+    details: []
+problems:
+  - status: 400
+    title: Bad request
+    meaning: Client-side error, returned with a message.
+    remediation: Validate path/query parameters (chainID, addresses, timestamps) before retrying.
+  - status: 401
+    title: Unauthorized
+    meaning: API key verification failed.
+    remediation: Supply a valid API key on authenticated endpoints; contact Teahouse for access.
+  - status: 500
+    title: Server error
+    meaning: Server-side error (database or on-chain contract errors, etc.).
+    remediation: Retry with backoff; if persistent, report via the Teahouse Discord support ticket channel.

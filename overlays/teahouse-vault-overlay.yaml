@@ -1,0 +1,17 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Teahouse Vault API
+  version: 1.0.0
+extends: openapi/teahouse-vault-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: '2026-07-21'
+      x-api-type: read-only-data
+      x-category: defi-vaults
+  - target: $.info
+    update:
+      x-agent-ready-notes: >-
+        Read-only GET/JSON API; no idempotency contract required. API-key header
+        name is not published by the provider and must be confirmed before
+        authenticated use.

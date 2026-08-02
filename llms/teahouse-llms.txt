@@ -1,0 +1,27 @@
+# Teahouse Finance
+
+> Teahouse Finance (founded 2021) is a multi-strategy DeFi asset-management platform that sits as a simplified layer above protocols such as Uniswap V3, running audited smart-contract vaults (LP Vaults, Portfolio Vaults, Easy-Earn delta-neutral, Tea-REX). The public Vault API is a read-only HTTP/JSON interface over permissionless vault catalog, performance, and share-transaction data.
+
+## APIs
+- [Vault API reference](https://docs.teahouse.finance/docs/vault-api): REST/JSON vault data API (base https://vault-content-api.teahouse.finance)
+- [Vault API introduction](https://docs.teahouse.finance/docs/for-developers/vault-api-introduction): status codes, response format, auth
+
+## Specs
+- [OpenAPI (API Evangelist transcription)](openapi/teahouse-vault-openapi.yml)
+- [Authentication profile](authentication/teahouse-authentication.yml)
+- [Error catalog](errors/teahouse-problem-types.yml)
+- [API conventions](conventions/teahouse-conventions.yml)
+- [Data model](data-model/teahouse-data-model.yml)
+
+## Docs
+- [Documentation home](https://docs.teahouse.finance/docs)
+- [App](https://vault.teahouse.finance/)
+- [GitHub organization](https://github.com/TeahouseFinance)
+- [Contact / Support](https://docs.teahouse.finance/docs/other-information/contact-us)
+
+## Endpoints
+- GET /vaults — vault catalog with contents
+- GET /vaults/type/permissionless — permissionless vaults with latest metrics
+- GET /vaults/permissionless/performance/{chainID}/{contractAddress}/{start}/{end} — performance time series
+- GET /vaults/permissionless/log/{address}/{startTimestamp}/{endTimestamp} — account share logs
+- GET /vaults/permissionless/log/shares/{chainID}/{contractAddress}/{startTimestamp}/{endTimestamp} — vault share logs

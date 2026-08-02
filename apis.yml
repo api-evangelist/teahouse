@@ -1,27 +1,140 @@
 aid: teahouse
-name: Teahouse
-description: 'Teahouse is a company surfaced as a portfolio company of pantera-capital and added to the
-  API Evangelist network as a stub for enrichment. Sector: crypto. This profile is a lead awaiting the
-  enrichment pipeline.'
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/teahouse.png
+name: Teahouse Finance
+description: >-
+  Teahouse Finance, founded in 2021, is a multi-strategy DeFi asset-management
+  platform that sits as a simplified layer above protocols such as Uniswap V3,
+  removing the complexity of managing liquidity and crypto assets. It runs
+  audited smart-contract vaults across multiple chains — LP Vaults, Portfolio
+  Vaults, the Easy-Earn delta-neutral strategy, and Tea-REX — for both
+  individual and enterprise clients. Teahouse exposes a public read-only
+  Vault API (HTTP/JSON) over its permissionless vaults: the vault catalog,
+  per-vault performance time series (TVL, fee APR, share-token APR, share
+  price), and account/vault share transaction logs. Vaults are of type V3Pair
+  (a single Uniswap V3 LP pair) or V3Port (a portfolio of multiple positions).
+  Surfaced as a portfolio company of Pantera Capital and enriched into the API
+  Evangelist network from its published developer documentation.
 url: https://raw.githubusercontent.com/api-evangelist/teahouse/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - pantera-capital
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: has-public-api
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Crypto
-apis: []
+- DeFi
+- Blockchain
+- Vaults
+- Liquidity Management
+- Asset Management
+- Uniswap
+- Web3
+apis:
+- aid: teahouse:teahouse-logs-api
+  name: Teahouse Finance Logs API
+  description: Share transaction logs
+  humanURL: https://docs.teahouse.finance/docs/vault-api
+  baseURL: https://vault-content-api.teahouse.finance
+  tags:
+  - Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/teahouse-logs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.teahouse.finance/docs/vault-api
+  - type: Authentication
+    url: authentication/teahouse-authentication.yml
+- aid: teahouse:teahouse-performance-api
+  name: Teahouse Finance Performance API
+  description: Vault performance time series
+  humanURL: https://docs.teahouse.finance/docs/vault-api
+  baseURL: https://vault-content-api.teahouse.finance
+  tags:
+  - Performance
+  properties:
+  - type: OpenAPI
+    url: openapi/teahouse-performance-api-openapi.yml
+  - type: Documentation
+    url: https://docs.teahouse.finance/docs/vault-api
+  - type: Authentication
+    url: authentication/teahouse-authentication.yml
+- aid: teahouse:teahouse-vaults-api
+  name: Teahouse Finance Vaults API
+  description: Vault catalog and metadata
+  humanURL: https://docs.teahouse.finance/docs/vault-api
+  baseURL: https://vault-content-api.teahouse.finance
+  tags:
+  - Vaults
+  properties:
+  - type: OpenAPI
+    url: openapi/teahouse-vaults-api-openapi.yml
+  - type: Documentation
+    url: https://docs.teahouse.finance/docs/vault-api
+  - type: Authentication
+    url: authentication/teahouse-authentication.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/teahouse-domain-security.yml
 - type: Website
   url: https://teahouse.finance/
+- type: DeveloperPortal
+  url: https://docs.teahouse.finance/docs
+- type: Documentation
+  url: https://docs.teahouse.finance/docs
+- type: APIReference
+  url: https://docs.teahouse.finance/docs/vault-api
+- type: GettingStarted
+  url: https://docs.teahouse.finance/docs/for-developers/vault-api-introduction
+- type: GitHubOrganization
+  url: https://github.com/TeahouseFinance
+- type: Blog
+  url: https://medium.com/@teahouse.finance
+- type: Support
+  url: https://docs.teahouse.finance/docs/other-information/contact-us
+- type: SignUp
+  url: https://vault.teahouse.finance/
+- type: Authentication
+  url: authentication/teahouse-authentication.yml
+- type: ErrorCatalog
+  url: errors/teahouse-problem-types.yml
+- type: Conventions
+  url: conventions/teahouse-conventions.yml
+- type: DataModel
+  url: data-model/teahouse-data-model.yml
+- type: Lifecycle
+  url: lifecycle/teahouse-lifecycle.yml
+- type: Conformance
+  url: conformance/teahouse-conformance.yml
+- type: MCPServer
+  url: mcp/teahouse-mcp.yml
+- type: LLMsTxt
+  url: llms/teahouse-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 14
+  pass: local-v1

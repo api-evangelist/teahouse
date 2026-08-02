@@ -1,0 +1,7 @@
+generated: '2026-07-21'
+method: generated
+skills:
+  - file: teahouse-vault-monitoring.md
+    name: Monitor Teahouse vault performance and flows
+    api: openapi/teahouse-vault-openapi.yml
+    operations: [listVaults, listPermissionlessVaults, getPermissionlessVaultPerformance, getVaultShareTransactions, getAccountShareTransactions]

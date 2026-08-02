@@ -1,0 +1,36 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/teahouse-vault-openapi.yml
+docs: https://docs.teahouse.finance/docs/vault-api
+note: >-
+  Cross-cutting request/response semantics for the Teahouse Vault API, derived
+  from the documented endpoints. This is a read-only (GET-only) data API, so it
+  exposes NO idempotency-key contract, no write/mutation surface, and no OAuth
+  scopes.
+authentication:
+  style: api-key (header); some read endpoints public
+  ref: authentication/teahouse-authentication.yml
+idempotency:
+  supported: false
+  reason: read-only GET API; no state-mutating operations
+content_type:
+  request: none (GET only)
+  response: application/json
+pagination:
+  style: time-range
+  params: [start, end, startTimestamp, endTimestamp]
+  note: >-
+    Performance and log endpoints are bounded by explicit Unix-timestamp start/end
+    path segments rather than cursor/offset pagination.
+identifiers:
+  chainID: EVM chain id in the path (e.g. 137 = Polygon)
+  contractAddress: vault contract address in the path
+  address: wallet address in the path
+error_envelope:
+  shape: '{ error: string, details?: array }'
+  ref: errors/teahouse-problem-types.yml
+versioning:
+  scheme: none-published
+  ref: lifecycle/teahouse-lifecycle.yml
+rate_limiting:
+  signaled: unknown (not documented)

@@ -1,0 +1,17 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.teahouse.finance/docs/vault-api
+note: >-
+  Teahouse does not publish a formal API versioning policy, deprecation policy,
+  SLA, or a dedicated status page. Smart-contract vaults are audited; audit
+  references live in the docs. Fields left empty are honestly absent, not omitted.
+versioning:
+  scheme: none-published
+  current: null
+deprecation:
+  policy_url: null
+  sunset_header: false
+sla:
+  url: null
+status_page: null
+deprecated_operations: []

@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/teahouse-vault-openapi.yml
+note: >-
+  No official Teahouse MCP server was found. This is a candidate tool surface
+  derived one-to-one from the documented Vault API operations.
+server:
+  name: teahouse
+  transport: http
+tools:
+  - name: list_vaults
+    description: Get the full vault catalog with contents.
+    source_operation: openapi/teahouse-vault-openapi.yml#listVaults
+  - name: list_permissionless_vaults
+    description: Get permissionless vaults with latest performance metrics.
+    source_operation: openapi/teahouse-vault-openapi.yml#listPermissionlessVaults
+  - name: get_vault_performance
+    description: Get a vault's performance time series between two timestamps.
+    source_operation: openapi/teahouse-vault-openapi.yml#getPermissionlessVaultPerformance
+  - name: get_account_share_transactions
+    description: Get share transaction logs for a wallet address in a time range.
+    source_operation: openapi/teahouse-vault-openapi.yml#getAccountShareTransactions
+  - name: get_vault_share_transactions
+    description: Get share transaction logs for a vault in a time range.
+    source_operation: openapi/teahouse-vault-openapi.yml#getVaultShareTransactions
