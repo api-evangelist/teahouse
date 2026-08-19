@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Teahouse Vault Logs Performance API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Performance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get vault info and performance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://vault-content-api.teahouse.finance/vaults/permissionless/performance/:chainID/:contractAddress/:start/:end",
+            "params": [
+              {
+                "name": "chainID",
+                "value": "",
+                "type": "path",
+                "description": "Blockchain ID (e.g. 137 for Polygon)."
+              },
+              {
+                "name": "contractAddress",
+                "value": "",
+                "type": "path",
+                "description": "Vault contract address."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "path",
+                "description": "Start Unix timestamp."
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "path",
+                "description": "End Unix timestamp."
+              }
+            ]
+          },
+          "docs": "Returns vault info and performance time series (TVL, APR, share-token price) between two Unix timestamps."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

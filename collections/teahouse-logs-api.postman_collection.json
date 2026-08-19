@@ -1,0 +1,564 @@
+{
+  "item": [
+    {
+      "id": "7b305a92-0dfa-469b-8e64-bc092b282e78",
+      "name": "Logs",
+      "description": {
+        "content": "Share transaction logs",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "76168144-b482-40d5-8e32-c9ce962de1f9",
+          "name": "Get account share transactions in permissionless vault",
+          "request": {
+            "name": "Get account share transactions in permissionless vault",
+            "description": {
+              "content": "Returns share transaction logs (deposit, transfer_from, transfer_to, withdraw) for a given wallet address within a time range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vaults",
+                "permissionless",
+                "log",
+                ":address",
+                ":startTimestamp",
+                ":endTimestamp"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address",
+                  "description": "(Required) Wallet address."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "startTimestamp",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "endTimestamp",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "49e2921a-8ee1-4689-a638-1bee7bf9d201",
+              "name": "Account share transaction logs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    "permissionless",
+                    "log",
+                    ":address",
+                    ":startTimestamp",
+                    ":endTimestamp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) Wallet address."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "startTimestamp",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "endTimestamp",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"fromAddress\": \"string\",\n    \"toAddress\": \"string\",\n    \"amount\": \"string\",\n    \"blockNumber\": 7424,\n    \"timestamp\": 8226,\n    \"transactionID\": \"string\",\n    \"action\": \"string\"\n  },\n  {\n    \"fromAddress\": \"string\",\n    \"toAddress\": \"string\",\n    \"amount\": \"string\",\n    \"blockNumber\": 3581,\n    \"timestamp\": 1727,\n    \"transactionID\": \"string\",\n    \"action\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8af10871-4d9a-4b75-8bfa-3a33f254536c",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    "permissionless",
+                    "log",
+                    ":address",
+                    ":startTimestamp",
+                    ":endTimestamp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) Wallet address."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "startTimestamp",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "endTimestamp",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "602de4fa-e01e-4f27-ae9a-ba1c387ec59b",
+              "name": "Server-side error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    "permissionless",
+                    "log",
+                    ":address",
+                    ":startTimestamp",
+                    ":endTimestamp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) Wallet address."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "startTimestamp",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "endTimestamp",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "664b19be-78a0-4294-9055-cae6556b04c6",
+          "name": "Get share transactions in permissionless vault",
+          "request": {
+            "name": "Get share transactions in permissionless vault",
+            "description": {
+              "content": "Returns the vault address, chain, and share transaction logs (fromAddress, toAddress, amount, blockNumber, timestamp, transactionID) within a time range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vaults",
+                "permissionless",
+                "log",
+                "shares",
+                ":chainID",
+                ":contractAddress",
+                ":startTimestamp",
+                ":endTimestamp"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "chainID",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contractAddress",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "startTimestamp",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "endTimestamp",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "618bab82-d821-4795-a416-2ffc87fb6609",
+              "name": "Vault share transaction logs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    "permissionless",
+                    "log",
+                    "shares",
+                    ":chainID",
+                    ":contractAddress",
+                    ":startTimestamp",
+                    ":endTimestamp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "chainID",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contractAddress",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "startTimestamp",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "endTimestamp",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"chain\": \"string\",\n  \"logs\": [\n    {\n      \"fromAddress\": \"string\",\n      \"toAddress\": \"string\",\n      \"amount\": \"string\",\n      \"blockNumber\": 5582,\n      \"timestamp\": 2665,\n      \"transactionID\": \"string\",\n      \"action\": \"string\"\n    },\n    {\n      \"fromAddress\": \"string\",\n      \"toAddress\": \"string\",\n      \"amount\": \"string\",\n      \"blockNumber\": 1097,\n      \"timestamp\": 354,\n      \"transactionID\": \"string\",\n      \"action\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b7c4c53-5282-4225-a19a-bb4086dcb054",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    "permissionless",
+                    "log",
+                    "shares",
+                    ":chainID",
+                    ":contractAddress",
+                    ":startTimestamp",
+                    ":endTimestamp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "chainID",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contractAddress",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "startTimestamp",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "endTimestamp",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c076aee6-9e85-4f72-b402-da8f638ed36a",
+              "name": "Server-side error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    "permissionless",
+                    "log",
+                    "shares",
+                    ":chainID",
+                    ":contractAddress",
+                    ":startTimestamp",
+                    ":endTimestamp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "chainID",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contractAddress",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "startTimestamp",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "endTimestamp",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://vault-content-api.teahouse.finance",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "580078a5-5e45-4d9b-9054-fb257e0acec7",
+    "name": "Teahouse Vault Logs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Read-only HTTP/JSON API exposing Teahouse Finance permissionless DeFi vault data: the vault catalog, per-vault performance time series (TVL, fee APR, share-token APR, share price), and account/vault share transaction logs. Vaults are of type V3Pair (a single Uniswap V3 LP pair) or V3Port (a portfolio of multiple Uniswap V3 positions).\n\nContact Support:\n Name: Teahouse Finance",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,312 @@
+{
+  "item": [
+    {
+      "id": "a2b1c74a-94e6-4b8c-93bb-bbf86f3e675a",
+      "name": "Performance",
+      "description": {
+        "content": "Vault performance time series",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "de8320c8-abd8-4232-8846-45b2b551f28c",
+          "name": "Get vault info and performance",
+          "request": {
+            "name": "Get vault info and performance",
+            "description": {
+              "content": "Returns vault info and performance time series (TVL, APR, share-token price) between two Unix timestamps.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vaults",
+                "permissionless",
+                "performance",
+                ":chainID",
+                ":contractAddress",
+                ":start",
+                ":end"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "chainID",
+                  "description": "(Required) Blockchain ID (e.g. 137 for Polygon)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contractAddress",
+                  "description": "(Required) Vault contract address."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "start",
+                  "description": "(Required) Start Unix timestamp."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "end",
+                  "description": "(Required) End Unix timestamp."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0a352e1-ae49-41bf-a32d-704e13c4d432",
+              "name": "Vault info and performance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    "permissionless",
+                    "performance",
+                    ":chainID",
+                    ":contractAddress",
+                    ":start",
+                    ":end"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "chainID",
+                      "description": "(Required) Blockchain ID (e.g. 137 for Polygon)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contractAddress",
+                      "description": "(Required) Vault contract address."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "start",
+                      "description": "(Required) Start Unix timestamp."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "end",
+                      "description": "(Required) End Unix timestamp."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tvl\": [\n    4743.688327878181,\n    3906.995901599667\n  ],\n  \"apr\": [\n    5841.447586005468,\n    4005.873057531255\n  ],\n  \"sharePrice\": [\n    4507.939995847063,\n    7462.938875422968\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e838663d-ce33-4e46-9adb-5a3604bb1feb",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    "permissionless",
+                    "performance",
+                    ":chainID",
+                    ":contractAddress",
+                    ":start",
+                    ":end"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "chainID",
+                      "description": "(Required) Blockchain ID (e.g. 137 for Polygon)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contractAddress",
+                      "description": "(Required) Vault contract address."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "start",
+                      "description": "(Required) Start Unix timestamp."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "end",
+                      "description": "(Required) End Unix timestamp."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16a76021-a23a-46df-bc69-d0ca33770c93",
+              "name": "Server-side error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    "permissionless",
+                    "performance",
+                    ":chainID",
+                    ":contractAddress",
+                    ":start",
+                    ":end"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "chainID",
+                      "description": "(Required) Blockchain ID (e.g. 137 for Polygon)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contractAddress",
+                      "description": "(Required) Vault contract address."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "start",
+                      "description": "(Required) Start Unix timestamp."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "end",
+                      "description": "(Required) End Unix timestamp."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://vault-content-api.teahouse.finance",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "db6b1cc4-0371-460d-8458-ea148a8ee58a",
+    "name": "Teahouse Vault Logs Performance API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Read-only HTTP/JSON API exposing Teahouse Finance permissionless DeFi vault data: the vault catalog, per-vault performance time series (TVL, fee APR, share-token APR, share price), and account/vault share transaction logs. Vaults are of type V3Pair (a single Uniswap V3 LP pair) or V3Port (a portfolio of multiple Uniswap V3 positions).\n\nContact Support:\n Name: Teahouse Finance",
+      "type": "text/plain"
+    }
+  }
+}

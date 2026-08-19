@@ -1,0 +1,355 @@
+{
+  "item": [
+    {
+      "id": "581b1b94-7859-431a-8292-9a4cf1b060cf",
+      "name": "Vaults",
+      "description": {
+        "content": "Vault catalog and metadata",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d98e264e-5ac9-4296-a91e-2ab9274442c5",
+          "name": "Get vault list with contents",
+          "request": {
+            "name": "Get vault list with contents",
+            "description": {
+              "content": "Returns the full catalog of vaults with content metadata (address, symbol, chain, TVL, APR, share-token info).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vaults"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b8d340ef-6e59-4bd4-9ac9-d4fe27618121",
+              "name": "Vault catalog.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"address\": \"string\",\n    \"symbol\": \"string\",\n    \"chain\": \"string\",\n    \"chainID\": 7584,\n    \"tvl\": 9666.27835789999,\n    \"feeApr\": 6543.165484292563,\n    \"shareTokenApr\": 6523.095697109489\n  },\n  {\n    \"address\": \"string\",\n    \"symbol\": \"string\",\n    \"chain\": \"string\",\n    \"chainID\": 9653,\n    \"tvl\": 1915.5008974232767,\n    \"feeApr\": 2538.988170613529,\n    \"shareTokenApr\": 7504.225238334984\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f0559c4-981d-41e8-950a-458f15cb44ce",
+              "name": "Bad request (client-side error, with message).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac2c650f-4755-442e-aa4b-114c463207fe",
+              "name": "Unauthorized (API key verification failed).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1fabaf58-fbfb-41cc-b2f0-f7d758746a06",
+              "name": "Server-side error (database/contract errors).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d63a9164-9b8d-4ff5-b749-18deb9d4001d",
+          "name": "Get permissionless vault data list",
+          "request": {
+            "name": "Get permissionless vault data list",
+            "description": {
+              "content": "Returns permissionless vaults with latest performance metrics (TVL, fee APR, share-token APR).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vaults",
+                "type",
+                "permissionless"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "59a20e9b-f220-4ca2-89cd-57ec524f4a67",
+              "name": "Permissionless vault list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    "type",
+                    "permissionless"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"address\": \"string\",\n    \"symbol\": \"string\",\n    \"chain\": \"string\",\n    \"chainID\": 7584,\n    \"tvl\": 9666.27835789999,\n    \"feeApr\": 6543.165484292563,\n    \"shareTokenApr\": 6523.095697109489\n  },\n  {\n    \"address\": \"string\",\n    \"symbol\": \"string\",\n    \"chain\": \"string\",\n    \"chainID\": 9653,\n    \"tvl\": 1915.5008974232767,\n    \"feeApr\": 2538.988170613529,\n    \"shareTokenApr\": 7504.225238334984\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c069cff3-6bd7-4585-91b2-6e20618dd0a6",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    "type",
+                    "permissionless"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f17cee1-9d1d-4ddf-b0d4-152041c7f991",
+              "name": "Server-side error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    "type",
+                    "permissionless"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://vault-content-api.teahouse.finance",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f504c770-b1bd-4f88-a633-3aa9bb649843",
+    "name": "Teahouse Vault Logs Vaults API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Read-only HTTP/JSON API exposing Teahouse Finance permissionless DeFi vault data: the vault catalog, per-vault performance time series (TVL, fee APR, share-token APR, share price), and account/vault share transaction logs. Vaults are of type V3Pair (a single Uniswap V3 LP pair) or V3Port (a portfolio of multiple Uniswap V3 positions).\n\nContact Support:\n Name: Teahouse Finance",
+      "type": "text/plain"
+    }
+  }
+}

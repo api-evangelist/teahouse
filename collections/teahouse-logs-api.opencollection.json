@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Teahouse Vault Logs API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get account share transactions in permissionless vault",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://vault-content-api.teahouse.finance/vaults/permissionless/log/:address/:startTimestamp/:endTimestamp",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "Wallet address."
+              },
+              {
+                "name": "startTimestamp",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "endTimestamp",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns share transaction logs (deposit, transfer_from, transfer_to, withdraw) for a given wallet address within a time range."
+        },
+        {
+          "info": {
+            "name": "Get share transactions in permissionless vault",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://vault-content-api.teahouse.finance/vaults/permissionless/log/shares/:chainID/:contractAddress/:startTimestamp/:endTimestamp",
+            "params": [
+              {
+                "name": "chainID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "contractAddress",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "startTimestamp",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "endTimestamp",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the vault address, chain, and share transaction logs (fromAddress, toAddress, amount, blockNumber, timestamp, transactionID) within a time range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
