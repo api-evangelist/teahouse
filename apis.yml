@@ -41,6 +41,16 @@ tags:
 - Crypto
 - DeFi
 - Blockchain
+- Vault
+- Liquidity Management
+- Asset Management
+- Uniswap
+- Web3
+tags_raw:
+- Company
+- Crypto
+- DeFi
+- Blockchain
 - Vaults
 - Liquidity Management
 - Asset Management
@@ -81,6 +91,8 @@ apis:
   humanURL: https://docs.teahouse.finance/docs/vault-api
   baseURL: https://vault-content-api.teahouse.finance
   tags:
+  - Vault
+  tags_raw:
   - Vaults
   properties:
   - type: OpenAPI
