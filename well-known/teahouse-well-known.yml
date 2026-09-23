@@ -3,7 +3,14 @@ method: searched
 source: live probes of /.well-known/* on Teahouse hosts
 note: No well-known discovery documents are published. All probes returned 404.
 host: https://vault-content-api.teahouse.finance
-documents:
+additional_hosts:
+- host: https://vault-api.teahouse.finance
+  security_txt_status: 404
+- host: https://teahouse.finance
+  security_txt_status: 404
+hosts:
+- host: https://vault-content-api.teahouse.finance
+  documents:
   - path: /.well-known/security.txt
     status: 404
   - path: /.well-known/openid-configuration
@@ -14,8 +21,8 @@ documents:
     status: 404
   - path: /.well-known/ai-plugin.json
     status: 404
-additional_hosts:
-  - host: https://vault-api.teahouse.finance
-    security_txt_status: 404
-  - host: https://teahouse.finance
-    security_txt_status: 404
+x-shape-fix:
+  converted: '2026-08-20'
+  from: documents
+  note: Rewritten into hosts[] -> documents[], the only shape well_known_docs() in score.rb reads. A served
+    .well-known surface recorded in any other shape scores as absent.

@@ -1,9 +1,7 @@
 {
   "provider": "teahouse",
   "sources": [
-    "teahouse-logs-api-openapi.yml",
-    "teahouse-performance-api-openapi.yml",
-    "teahouse-vaults-api-openapi.yml"
+    "_original/teahouse-vault-openapi.yml"
   ],
   "outputs": [
     "teahouse-logs-api-openapi.yml",
@@ -13,6 +11,14 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "teahouse-vault-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "teahouse-logs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "teahouse-performance-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "teahouse-vaults-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

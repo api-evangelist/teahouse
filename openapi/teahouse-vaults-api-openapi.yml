@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Teahouse Vault Logs Vaults API
+  title: Teahouse Vault Vaults API
   version: '1.0'
   description: 'Read-only HTTP/JSON API exposing Teahouse Finance permissionless DeFi vault data: the vault catalog, per-vault performance time series (TVL, fee APR, share-token APR, share price), and account/vault share transaction logs. Vaults are of type V3Pair (a single Uniswap V3 LP pair) or V3Port (a portfolio of multiple Uniswap V3 positions).'
   contact:
@@ -81,6 +81,20 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      description: Error envelope returned on 4xx/5xx responses.
+      properties:
+        error:
+          type: string
+          description: Human-readable error message.
+        details:
+          type: array
+          description: Optional array of additional error detail entries.
+          items:
+            type: object
+      required:
+      - error
     Vault:
       type: object
       description: A Teahouse vault and its latest metrics.
@@ -101,20 +115,6 @@ components:
           type: number
         shareTokenApr:
           type: number
-    Error:
-      type: object
-      description: Error envelope returned on 4xx/5xx responses.
-      properties:
-        error:
-          type: string
-          description: Human-readable error message.
-        details:
-          type: array
-          description: Optional array of additional error detail entries.
-          items:
-            type: object
-      required:
-      - error
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
