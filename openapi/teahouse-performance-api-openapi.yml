@@ -70,20 +70,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      description: Error envelope returned on 4xx/5xx responses.
-      properties:
-        error:
-          type: string
-          description: Human-readable error message.
-        details:
-          type: array
-          description: Optional array of additional error detail entries.
-          items:
-            type: object
-      required:
-      - error
     Performance:
       type: object
       description: Time-series performance for a vault.
@@ -100,6 +86,20 @@ components:
           type: array
           items:
             type: number
+    Error:
+      type: object
+      description: Error envelope returned on 4xx/5xx responses.
+      properties:
+        error:
+          type: string
+          description: Human-readable error message.
+        details:
+          type: array
+          description: Optional array of additional error detail entries.
+          items:
+            type: object
+      required:
+      - error
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
