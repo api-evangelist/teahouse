@@ -120,20 +120,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      description: Error envelope returned on 4xx/5xx responses.
-      properties:
-        error:
-          type: string
-          description: Human-readable error message.
-        details:
-          type: array
-          description: Optional array of additional error detail entries.
-          items:
-            type: object
-      required:
-      - error
     ShareLog:
       type: object
       description: A single share transaction log entry.
@@ -153,6 +139,20 @@ components:
         action:
           type: string
           description: One of deposit, transfer_from, transfer_to, withdraw.
+    Error:
+      type: object
+      description: Error envelope returned on 4xx/5xx responses.
+      properties:
+        error:
+          type: string
+          description: Human-readable error message.
+        details:
+          type: array
+          description: Optional array of additional error detail entries.
+          items:
+            type: object
+      required:
+      - error
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
